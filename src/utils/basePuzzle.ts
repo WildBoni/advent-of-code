@@ -1,4 +1,4 @@
-import getInput from "../../utils/getInput";
+const template = `import getInput from "../../utils/getInput";
 import { fileURLToPath } from "url";
 import { basename, dirname } from "path";
 
@@ -16,3 +16,6 @@ function solveQuiz2() {
 }
 
 export { solveQuiz1, solveQuiz2 };
+`;
+
+export default template;

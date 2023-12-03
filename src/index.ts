@@ -1,3 +1,8 @@
-import getQuizResult from "./days/day1/puzzle";
+const puzzleDay = 1;
 
-console.log(getQuizResult());
+(async () => {
+  const { solveQuiz1, solveQuiz2 } = await import(`./days/day${puzzleDay}/puzzle`);
+
+  console.log(solveQuiz1());
+  console.log(solveQuiz2());
+})();
