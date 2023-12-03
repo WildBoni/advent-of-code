@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "My Advent of Code project",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' ./src/index.ts",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' ./src/index.ts",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "test": "node --loader ts-node/esm tests/*.test.ts"
+    "test": "TS_NODE_DEV=1 node --loader=ts-node/esm --experimental-specifier-resolution=node --test tests/**/*.test.ts"
   },
   "author": "Davide Bonifacio",
   "license": "ISC",
