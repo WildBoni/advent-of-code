@@ -16,6 +16,19 @@ const requestedDay = process.argv[2];
 const requestedDayPath = `src/days/day${requestedDay}`;
 const requestedDayTestPath = `src/tests/day${requestedDay}`;
 
+if (!AOC_TOKEN) {
+  console.error("No session token defined! Set it up the variable AOC_TOKEN in the file .env");
+  process.exit(1);
+}
+if (!requestedDay) {
+  console.error("No day given! Please specify a day, eg: npm run get-day 1");
+  process.exit(2);
+}
+if (+requestedDay < 1 || +requestedDay > 25) {
+  console.error("Incorrect day! Please use an integer between 1 and 25");
+  process.exit(2);
+}
+
 mkdirSync(requestedDayPath);
 writeFileSync(`${requestedDayPath}/puzzle.ts`, templatePuzzle);
 download({
