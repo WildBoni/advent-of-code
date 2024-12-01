@@ -1,11 +1,11 @@
-# Advent Of Code 2023 boilerplate
+# Advent Of Code 2024 boilerplate
 
-This is a Node.js environment for running and testing your AOC2023 code!
+This is a Node.js environment for running and testing your AOC2024 code!
 
 ## How to use it
 
-- login to https://adventofcode.com/ and get your session token from cookies using your browser devtools
-- set your token in a .env file, eg: `AOC_TOKEN=myTokenCode`
+- login to https://adventofcode.com/ and get your session token from cookies using your browser devtools (after logging in, you will find a session cookie: its value is your token that needs to be copied)
+- paste your token in a .env file, eg: `AOC_TOKEN=myTokenCode`
 - get a new day puzzle with npm get-day. You need to specify the day number,eg: `npm get-day 1`.
   This will create a days/day folder with:
   - readme.md file containing instructions containing AoC assignment of the day
