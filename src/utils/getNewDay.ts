@@ -6,7 +6,7 @@ import templatePuzzle from "./basePuzzle";
 
 import download from "./downloadInput";
 
-const AOC_URL = "https://adventofcode.com/2023/day";
+const AOC_URL = "https://adventofcode.com/2024/day";
 const AOC_TOKEN = process.env.AOC_TOKEN || "";
 
 const __filename = fileURLToPath(import.meta.url);

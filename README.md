@@ -6,7 +6,7 @@ This is a Node.js environment for running and testing your AOC2024 code!
 
 - login to https://adventofcode.com/ and get your session token from cookies using your browser devtools (after logging in, you will find a session cookie: its value is your token that needs to be copied)
 - paste your token in a .env file, eg: `AOC_TOKEN=myTokenCode`
-- get a new day puzzle with npm get-day. You need to specify the day number,eg: `npm get-day 1`.
+- get a new day puzzle with npm get-day. You need to specify the day number,eg: `npm run get-day 1`.
   This will create a days/day folder with:
   - readme.md file containing instructions containing AoC assignment of the day
   - input.txt containing AoC input of the day
@@ -16,8 +16,8 @@ This is a Node.js environment for running and testing your AOC2024 code!
   - tests/test folder with a predefined test.
 - Start coding in TypeScript with hot reload: `npm run dev`.
 - Set your puzzleDay variable inside index.ts and start coding your solution inside days/day folder.
-- Write your test and run them:
-  - `npm run ` will run every test
+- Write your test and run them (working in Unix environment - Windows compatibility needs to be fixed!):
+  - `npm run test` will run every test
   - `DAY=1 npm run test-day` will run tests for day 1
 - That's it: happy coding!
 

@@ -1,11 +1,11 @@
 {
-  "name": "advent-of-code-2023",
-  "version": "1.0.0",
+  "name": "advent-of-code-2024",
+  "version": "1.1.0",
   "description": "My Advent of Code project",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'node --env-file=.env --experimental-specifier-resolution=node --loader ts-node/esm' ./src/index.ts",
+    "dev": "nodemon --watch \"src/**/*.ts\" --exec \"node --experimental-specifier-resolution=node --loader ts-node/esm\" ./src/index.ts",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
