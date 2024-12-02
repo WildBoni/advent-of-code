@@ -19,6 +19,7 @@ This is a Node.js environment for running and testing your AOC2024 code!
 - Write your test and run them (working in Unix environment - Windows compatibility needs to be fixed!):
   - `npm run test` will run every test
   - `DAY=1 npm run test-day` will run tests for day 1
+- If you manage to solve part 1 of the daily puzzle, you can run npm get-day once again to update the readme.md file with the second part of the exercise, eg. `npm run get-day 1`
 - That's it: happy coding!
 
 ## Tech stack

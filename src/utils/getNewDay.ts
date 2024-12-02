@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync, copyFileSync } from "fs";
+import { mkdirSync, writeFileSync, copyFileSync, existsSync, unlinkSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
@@ -29,20 +29,16 @@ if (+requestedDay < 1 || +requestedDay > 25) {
   process.exit(2);
 }
 
-mkdirSync(requestedDayPath);
-writeFileSync(`${requestedDayPath}/puzzle.ts`, templatePuzzle);
-download({
-  url: `${AOC_URL}/${requestedDay}/input`,
-  token: AOC_TOKEN,
-}).then(inputData => {
-  writeFileSync(`${requestedDayPath}/input.txt`, inputData as string);
-});
-download({
-  url: `${AOC_URL}/${requestedDay}`,
-  token: AOC_TOKEN,
-}).then(page => {
+const generateReadme = async (requestedDay: string) => {
+  // Retrieve the page data for the requested day
+  const page = await download({
+    url: `${AOC_URL}/${requestedDay}`,
+    token: AOC_TOKEN,
+  });
+
   const pageData = page as string;
   const re = /<article class="day-desc">[\s\S]+?<\/article>/g;
+
   const readme: string = (pageData.match(re) || [])
     .join("")
     .replace(
@@ -62,7 +58,33 @@ download({
     .replace(/<\/?article[^>]*>/g, "")
     .replace('<h2 id="part2">---', "\n\n##")
     .replace(/<h2>--- ([^\n]+)/, "# $1\n\n## Part One");
+
+  return readme;
+};
+
+if (!existsSync(requestedDayPath)) {
+  // If the day folder doesn't exist, create it and set up the puzzle
+  mkdirSync(requestedDayPath);
+  writeFileSync(`${requestedDayPath}/puzzle.ts`, templatePuzzle);
+
+  download({
+    url: `${AOC_URL}/${requestedDay}/input`,
+    token: AOC_TOKEN,
+  }).then(inputData => {
+    writeFileSync(`${requestedDayPath}/input.txt`, inputData as string);
+  });
+
+  mkdirSync(`${requestedDayTestPath}`);
+  copyFileSync(`${__dirname}/baseTest.ts`, `${requestedDayTestPath}/puzzle.test.ts`);
+} else {
+  // If the day folder already exists, simply delete the existing readme and generate a new one
+  // This is also necessary to retrieve ***PART 2***, as it only appears after completing ***PART 1***.
+  if (existsSync(`${requestedDayPath}/readme.md`)) {
+    unlinkSync(`${requestedDayPath}/readme.md`); // Delete the existing readme
+  }
+}
+
+// Generate the readme and write it to the file
+generateReadme(requestedDay).then(readme => {
   writeFileSync(`${requestedDayPath}/readme.md`, readme);
 });
-mkdirSync(`${requestedDayTestPath}`);
-copyFileSync(`${__dirname}/baseTest.ts`, `${requestedDayTestPath}/puzzle.test.ts`);
