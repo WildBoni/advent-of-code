@@ -1,4 +1,4 @@
-const puzzleDay = 1;
+const puzzleDay = 2;
 
 (async () => {
   const { solveQuiz1, solveQuiz2 } = await import(`./days/day${puzzleDay}/puzzle`);
